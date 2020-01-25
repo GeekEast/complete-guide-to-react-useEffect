@@ -1,0 +1,37 @@
+$progress-circle-bg-color: #efefef;
+// $progress-circle-path-color: #5116d0;
+
+.my-progress-container {
+    position: relative;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+    .my-progress-bar {
+        width: 100%;
+        position: relative;
+
+        .circle-bg {
+            stroke:$progress-circle-bg-color;
+            fill: none;
+        }
+        .circle-path {
+            fill: none;
+            // stroke: $progress-circle-path-color;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dasharray .5s;
+        }
+        .progress-text {
+            fill: black;
+            text-anchor: middle;  /* 文本水平居中 */
+            dominant-baseline: middle; /* 文本垂直居中 */
+            font-size: 20px;
+        }
+    }
+
+    .my-progress-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
