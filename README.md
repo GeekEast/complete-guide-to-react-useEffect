@@ -472,10 +472,9 @@ export default SearchResult;
 
 ## Case 7: how to choose between useMemo and useCallback
 - `useCallback`可以直接传**参数**，而`useMemo`**不**能`直接`传**参数**, 但是二者都可以直接读取定义在文件内的`变量`
-- `useMemo`重点在与缓存了函数运行的**结果**，而`useCallback`的重点在于缓存了**函数本身**，因此前者**不允许**传`参`，只用`deps`; 而后者**允许**设置`参数`，同时保持`deps`
+- `useMemo`重点在与缓存了`昂贵计算`函数运行的**结果**，而`useCallback`的重点在于缓存了**函数本身**; **使用useCallback无法达到缓存昂贵计算的结果**；
 - `useCallback`中可以进行`api`请求，而`useMemo`内部传入函数时只适合做用在`渲染过程`中的**昂贵计算**上,比如**重交互的图表**和**动画**等
-- `useCallback(fn,deps)` = `useMemo(() => fn, deps)`
-
+- 结论: 单纯为了**持久化**函数，使用`useCallback`; 为了能够减少昂贵计算的次数，使用`useMemo`
 ## Summary
 - `useEffect`依赖的变动会引起
   - `unmount`
