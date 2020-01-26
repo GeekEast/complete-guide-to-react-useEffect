@@ -368,8 +368,7 @@ const SearchResult = () => {
 export default SearchResult;
 ```
 ### Optimization: `useCallback`
-- 缓存也api请求的结果，能够提高性能
-- 当然如果页面unmount在mount, 缓存消失，会重新进行请求，如果还想优化，要考虑全局状态管理
+- 这里优化，本质上是因为deps的缘故，只有在`query`改变时才会进行api请求
 ```javascript
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
@@ -474,7 +473,7 @@ export default SearchResult;
 - `useCallback`可以直接传**参数**，而`useMemo`**不**能`直接`传**参数**, 但是二者都可以直接读取定义在文件内的`变量`
 - `useMemo`重点在与缓存了`昂贵计算`函数运行的**结果**，而`useCallback`的重点在于缓存了**函数本身**; **使用useCallback无法达到缓存昂贵计算的结果**；
 - `useCallback`中可以进行`api`请求，而`useMemo`内部传入函数时只适合做用在`渲染过程`中的**昂贵计算**上,比如**重交互的图表**和**动画**等
-- 结论: 单纯为了**持久化**函数，使用`useCallback`; 为了能够减少昂贵计算的次数，使用`useMemo`
+- 结论: 单纯为了**持久化**函数或者**多**个`useEffect`函数复用一个函数，使用`useCallback`; 为了能够减少昂贵计算的次数，使用`useMemo`
 ## Summary
 - `useEffect`依赖的变动会引起
   - `unmount`
