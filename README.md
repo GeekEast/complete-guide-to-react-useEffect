@@ -501,7 +501,7 @@ export default SearchResult;
 - 定义在`hooks`之外，组件之内的变量和函数有什么特征?
   - 在每次渲染后，`引用`都会发生**改变**
 - 经验之谈：
-  - 放在`deps`里面的不是`props`就是`state`
+  - 放在`deps`里面的不是`props`就是`state`, 共同特征: 会引起页面的重新渲染
   - 因为`component`中的`hooks`之外的变量和函数都是不稳定的，会引起**无限渲染**
   - 如果要放在`component`之外，说明不需要被复用，其实可以直接放入到`hooks`里面
   - 如果没办法放在component之内，有必须在hooks之外的(复用)，则需要使用`useCallback`, `useMemo`来原始化
