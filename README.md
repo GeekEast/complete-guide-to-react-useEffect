@@ -506,7 +506,7 @@ export default SearchResult;
   - 如果要放在`component`之外，说明不需要被复用，其实可以直接放入到`hooks`里面
   - 如果没办法放在component之内，有必须在hooks之外的(复用)，则需要使用`useCallback`, `useMemo`来原始化
 - 本质: hooks的本质就是在immutable中使用mutable
-
+- useReducer vs useState: 前者具备了数据在上一次和此次沟通的能力，也便利了状态之间的沟通
 ## References
 - [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [什么时候使用 useMemo 和 useCallback](https://jancat.github.io/post/2019/translation-usememo-and-usecallback/)
