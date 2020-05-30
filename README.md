@@ -487,9 +487,10 @@ export default SearchResult;
   - `componentDidUpdate`
   - **不会**引起`unmount`
 - props的改变会引起什么?
-  - 子组件的`render`
+  - 子组件的`render`，如果是不必要的，可以使用memo + shallowEqual的方式避免子组件的重新渲染
   - 子组件的`componentDidUpdate`
   - **不会**引起`unmount`
+  - **不会引起子组件state的reset**
 - 为什么要减少dependency?
   - 为了减少dependency变化带来的`componentWillUnmount`的执行
 - useEffect会提醒你把什么东西加入到deps中?
