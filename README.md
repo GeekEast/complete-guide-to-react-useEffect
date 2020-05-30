@@ -491,6 +491,36 @@ export default SearchResult;
   - 子组件的`componentDidUpdate`
   - **不会**引起`unmount`
   - **不会引起子组件state的reset**
+```javascript
+import React, { useState, memo } from "react";
+import shallowCompare from "react-addons-shallow-compare";
+
+const App = () => {
+  const [a, setA] = useState(0);
+  console.log("app render");
+  return (
+    <div>
+      <div>Hello World</div>
+      {a}
+      <button onClick={() => setA(a => a + 1)}>change app</button>
+      <Counter a={a} />
+    </div>
+  );
+};
+
+const Counter = memo(({ a }: any) => {
+  const [b, setB] = useState(a);
+  console.log("counter render");
+  return (
+    <div>
+      {b}
+      <button onClick={() => setB(b => b + 1)}>change counter</button>
+    </div>
+  );
+}, shallowCompare);
+
+export default App;
+```
 - 为什么要减少dependency?
   - 为了减少dependency变化带来的`componentWillUnmount`的执行
 - useEffect会提醒你把什么东西加入到deps中?
